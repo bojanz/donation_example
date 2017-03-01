@@ -52,11 +52,13 @@ Download and install the 8.x-1.x-dev version.
 
 Donation block
 --------------
-The donation block will live on a node page, collect all of the needed information, then create the order item and redirect to checkout.
+Donations are created via the [donation block](https://github.com/bojanz/donation_example/blob/master/src/Plugin/Block/DonationBlock.php). There can be multiple instances of the donation block, shown on different pages. That means that the block is a good place to put settings on, for example the predefined amounts that will be offerred.
+
+The donation block renders the [donation form](https://github.com/bojanz/donation_example/blob/master/src/Form/DonationForm.php) and optionally passes data to it (any settings, for example). The form is simple, it collects the needed information and then uses it to create an order item and add it to the cart.
 
 Donation checkout pane
 ----------------------
-@todo
+The [checkout pane](https://github.com/bojanz/donation_example/blob/master/src/Plugin/Commerce/CheckoutPane/Donation.php) creates (and keeps up to date) a donation order item.
 
 Recurring
 ---------
@@ -64,5 +66,4 @@ Recurring donations will be handled via custom code. This code will be triggered
 
 Notes
 -----
-The cart will not show a title for donation order items until this issue is fixed in Commerce:
-https://www.drupal.org/node/2855435
+The cart (and the order summary on checkout) will not show a title for donation order items until this issue is fixed in Commerce: https://www.drupal.org/node/2855435

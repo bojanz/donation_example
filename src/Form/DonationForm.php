@@ -178,6 +178,7 @@ class DonationForm extends FormBase {
         'currency_code' => 'USD',
       ],
       'field_frequency' => $form_state->getValue('frequency'),
+      'field_tribute' => $form_state->getValue('tribute'),
       'field_recipient_name' => $form_state->getValue('recipient_name'),
       'field_recipient_email' => $form_state->getValue('recipient_email'),
       'field_description' => $form_state->getValue('description'),
