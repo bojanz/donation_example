@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_order.commerce_order_item_type.donation
+    - field.storage.commerce_order_item.field_recipient_email
+id: commerce_order_item.donation.field_recipient_email
+field_name: field_recipient_email
+entity_type: commerce_order_item
+bundle: donation
+label: 'Recipient email'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

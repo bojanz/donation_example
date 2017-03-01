@@ -1,0 +1,9 @@
+name: Donation example
+type: module
+description: 'Provides a donation example.'
+package: Commerce (contrib)
+core: 8.x
+dependencies:
+  - commerce_order
+  - commerce_price
+  - select_or_other
