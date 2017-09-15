@@ -4,7 +4,7 @@ namespace Drupal\donation_example\Form;
 
 use Drupal\commerce_cart\CartManagerInterface;
 use Drupal\commerce_cart\CartProviderInterface;
-use Drupal\commerce_store\StoreContextInterface;
+use Drupal\commerce_store\CurrentStoreInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -37,11 +37,11 @@ class DonationForm extends FormBase {
   protected $cartProvider;
 
   /**
-   * The store context.
+   * The current store.
    *
-   * @var \Drupal\commerce_store\StoreContextInterface
+   * @var \Drupal\commerce_store\CurrentStoreInterface
    */
-  protected $storeContext;
+  protected $currentStore;
 
   /**
    * Constructs a new DonationForm object.
@@ -52,14 +52,14 @@ class DonationForm extends FormBase {
    *   The cart manager.
    * @param \Drupal\commerce_cart\CartProviderInterface $cart_provider
    *   The cart provider.
-   * @param \Drupal\commerce_store\StoreContextInterface $store_context
-   *   The store context.
+   * @param \Drupal\commerce_store\CurrentStoreInterface $current_store
+   *   The current store.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, CartManagerInterface $cart_manager, CartProviderInterface $cart_provider, StoreContextInterface $store_context) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, CartManagerInterface $cart_manager, CartProviderInterface $cart_provider, CurrentStoreInterface $current_store) {
     $this->entityTypeManager = $entity_type_manager;
     $this->cartManager = $cart_manager;
     $this->cartProvider = $cart_provider;
-    $this->storeContext = $store_context;
+    $this->currentStore = $current_store;
   }
 
   /**
@@ -70,7 +70,7 @@ class DonationForm extends FormBase {
       $container->get('entity_type.manager'),
       $container->get('commerce_cart.cart_manager'),
       $container->get('commerce_cart.cart_provider'),
-      $container->get('commerce_store.store_context')
+      $container->get('commerce_store.current_store')
     );
   }
 
@@ -183,7 +183,7 @@ class DonationForm extends FormBase {
       'field_recipient_email' => $form_state->getValue('recipient_email'),
       'field_description' => $form_state->getValue('description'),
     ]);
-    $store = $this->storeContext->getStore();
+    $store = $this->currentStore->getStore();
     // Always use the 'default' order type.
     $cart = $this->cartProvider->getCart('default', $store);
     if (!$cart) {
