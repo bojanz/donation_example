@@ -1,3 +1,5 @@
+**Deprecated**: This example has been expanded into [commerce_donation_flow](https://www.drupal.org/project/commerce_donation_flow).
+
 # donation_example
 Donation example for Commerce 2.x
 
